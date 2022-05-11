@@ -1,19 +1,22 @@
-import React, {useLayoutEffect, useState} from "react";
+import React, {Component, Fragment, useEffect, useLayoutEffect, useState} from "react";
 import useToken from "./useToken";
 import Login from "./Login";
 import App from "../App";
 
-function Content() {
-    const [examples, setExamples] = useState(true);
 
-    const { token, setToken } = useToken();
+function Content() {
+    const [books, setBooks] = useState(true);
+
+    const {token, setToken} = useToken();
 
     useLayoutEffect(() => {
-        getExamples();
+        getBooks();
     });
 
-    function getExamples() {
-        fetch('http://localhost:8083/api/examples/', {
+    let taked = true;
+
+    function getBooks() {
+        fetch('http://localhost:8083/api/books/', {
             headers: {
                 'Authorization': token
             }
@@ -22,32 +25,33 @@ function Content() {
                 return response.text();
             })
             .then(data => {
-                setExamples(data);
+                setBooks(data);
             });
     }
 
-    function createExample() {
-        let exampleText = prompt('Enter text');
-        fetch('http://localhost:8083/api/examples/', {
+    function createBook() {
+        let bookName = prompt('Enter text');
+        let amount = prompt('Enter amount');//
+        fetch('http://localhost:8083/api/books/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
             },
-            body: JSON.stringify({exampleText}),
+            body: JSON.stringify({bookName, amount}),
         })
             .then(response => {
                 return response.text();
             })
             .then(data => {
                 alert(data);
-                getExamples();
+                getBooks();
             });
     }
 
-    function deleteExample() {
-        let id = prompt('Enter example ID');
-        fetch(`http://localhost:8083/api/examples/${id}`, {
+    function deleteBook() {
+        let id = prompt('Enter book ID');
+        fetch(`http://localhost:8083/api/books/${id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': token
@@ -58,14 +62,15 @@ function Content() {
             })
             .then(data => {
                 alert(data);
-                getExamples();
+                getBooks();
             });
     }
 
-    function updateExample() {
-        let id = prompt('Enter example ID');
-        let exampleText = prompt('Enter new text');
-        fetch('http://localhost:8083/api/examples/', {
+    function updateBook() {
+        let id = prompt('Enter book ID');
+        let bookName = prompt('Enter new text');
+        let amount = prompt('Enter new amount');//
+        fetch('http://localhost:8083/api/books/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +78,8 @@ function Content() {
             },
             body: JSON.stringify({
                 id,
-                exampleText
+                bookName,
+                amount
             }),
         })
             .then(response => {
@@ -81,41 +87,103 @@ function Content() {
             })
             .then(data => {
                 alert(data);
-                getExamples();
+                getBooks();
             });
     }
+
+
+
+    function updateAmount(id, bookName, amount) {
+        // alert(f);
+        // alert(id);
+        // alert(bookName);
+        amount = Number(amount) - 1;
+        fetch('http://localhost:8083/api/books/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify({
+                id,
+                bookName,
+                amount
+            }),
+        })
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                getBooks();
+            });
+    }
+
+    function updateAmound(id, bookName, amount) {
+        // alert(f);
+        // alert(id);
+        // alert(bookName);
+        amount = Number(amount) + 1;
+        fetch('http://localhost:8083/api/books/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify({
+                id,
+                bookName,
+                amount
+            }),
+        })
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                getBooks();
+            });
+    }
+
     // if(!token) {
     //     return <Login setToken={setToken}/>
     // }
-    return (
 
-        <div>
+    //var booki = (JSON.parse(books));
+
+    //console.log(booki);
 
 
-            {/*<table>*/}
-            {/*  <thead>*/}
-            {/*    <tr>*/}
-            {/*      <th>Id</th>*/}
-            {/*      <th>Text</th>*/}
-            {/*    </tr>*/}
-            {/*  </thead>*/}
-            {/*  <tbody>*/}
-            {/*    {JSON.parse(examples).map(item =>*/}
-            {/*      <tr>*/}
-            {/*        <td>{item.id}</td>*/}
-            {/*        <td>{item.exampleText}</td>*/}
-            {/*      </tr>)}*/}
-            {/*  </tbody>*/}
-            {/*</table>*/}
-            {examples}
-            <br />
-            <button onClick={createExample}>Add example</button>
-            <br />
-            <button onClick={deleteExample}>Delete example</button>
-            <br />
-            <button onClick={updateExample}>Update example</button>
-        </div>
-    );
+        return (
+
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Text</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {Object.values(JSON.parse(books)).map(book =>
+                        <tr>
+                            <td>{book.id}</td>
+                            <td>{book.bookName}</td>
+                            <td>{book.amount}</td>
+                            <td><button onClick={updateAmount.bind(0, book.id, book.bookName, book.amount)}>Take book</button></td>
+                            <td><button onClick={updateAmound.bind(0, book.id, book.bookName, book.amount)}>Return book</button></td>
+                        </tr>)}
+                    </tbody>
+                </table>
+
+                <br/>
+                <button onClick={createBook}>Add book</button>
+                <br/>
+                <button onClick={deleteBook}>Delete book</button>
+                <br/>
+                <button onClick={updateBook}>Update book</button>
+            </div>
+        );
+
 }
 
 export default Content;
