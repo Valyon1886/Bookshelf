@@ -1,0 +1,106 @@
+/*.back{*/
+/*    background-color: #9a825d;*/
+/*}*/
+.par {
+    text-align: center;
+    font-family: "Apple Chancery", cursive;
+    font-size: medium;
+    color: aliceblue !important;
+}
+
+.ab {
+    text-align: center;
+    font-family: "Apple Chancery", cursive;
+    font-size: large;
+    color: aliceblue;
+}
+
+.imp {
+    font-size: x-small !important;
+    font-family: "Apple Chancery", cursive;
+}
+
+.img {
+    width: 25px;
+    height: auto;
+}
+
+.links {
+    padding: 10px;
+    align-self: stretch;
+}
+
+.container {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+
+
+}
+
+/*.back {*/
+/*    background-color: #9a825d;*/
+/*}*/
+
+.nav {
+    background-color: rgba(63, 34, 10, 0.94);
+    text-align: center;
+    font-family: "Apple Chancery", fantasy;
+    font-size: medium;
+
+}
+
+.nav1 {
+    background-color: rgba(63, 34, 10, 0.94);
+    text-align: center;
+    font-family: "Apple Chancery", fantasy;
+    font-size: medium;
+    border: 2px solid;
+    border-width: medium;
+    color: black;
+
+}
+
+
+.l {
+    text-decoration: none;
+    margin: 4px;
+    text-align: center;
+    color: aliceblue;
+    font-size: 10px;
+    font-family: "Apple Chancery", cursive;
+
+}
+
+.button1{
+    background-color: orangered;
+}
+.button2{
+    background-color: olive;
+}
+.button3{
+    background-color: #bb3700;
+}
+.mask{
+    margin: 10px;
+}
+
+.for{
+    color: black;
+}
+
+th{
+    margin: 5px;
+}
+
+td{
+    margin: 5px;
+}
+
+.imglib{
+    width: 500px;
+    height: auto;
+    color: black;
+    border: 2px solid;
+    border-width: medium;
+}
