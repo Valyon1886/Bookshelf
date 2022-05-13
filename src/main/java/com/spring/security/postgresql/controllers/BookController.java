@@ -54,10 +54,10 @@ public class BookController {
         return BookService.update(Book);
     }
 
-    @PutMapping("/")
+    @PutMapping("/amount")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public Book updateAmount(@RequestBody Book Book) {
-        return BookService.update(Book);
+        return BookService.updateAmount(Book);
     }
 
 }
