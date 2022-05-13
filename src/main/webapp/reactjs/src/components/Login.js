@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import classes from "./all.module.css";
 
 export default function Login({setToken}) {
     const handleSubmit = async e => {
@@ -14,17 +15,19 @@ export default function Login({setToken}) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
+        <form className="d-flex mt-5" onSubmit={handleSubmit}>
+            <label className={`${classes.mask}`}>
                 <p>Username</p>
-                <input type="text" id="username" />
+                <input className={`${classes.for}`} type="text" id="username" />
             </label>
-            <label>
+            <br></br>
+            <label className={`${classes.mask}`}>
                 <p>Password</p>
-                <input type="password" id="password" />
+                <input className={`${classes.for}`} type="password" id="password" />
             </label>
-            <div>
-                <button type="submit">Submit</button>
+            <br></br>
+            <div className={`${classes.mask}`}>
+                <button className={`btn ${classes.button3}`} type="submit">Submit</button>
             </div>
         </form>
     );

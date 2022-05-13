@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Login from "./Login";
 import { useNavigate } from "react-router-dom";
+import classes from "./all.module.css";
 
 export default function Registration({setToken}) {
     const navigate = useNavigate();
@@ -19,25 +20,29 @@ export default function Registration({setToken}) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
+        <form className="d-flex mt-5" onSubmit={handleSubmit}>
+            <label className={`${classes.mask}`}>
                 <p>Username</p>
-                <input type="text" id="username" />
+                <input className={`${classes.for}`} type="text" id="username" />
             </label>
-            <label>
+            <br></br>
+            <label className={`${classes.mask}`}>
                 <p>Password</p>
-                <input type="password" id="password" />
+                <input className={`${classes.for}`} type="password" id="password" />
             </label>
-            <label>
+            <br></br>
+            <label className={`${classes.mask}`}>
                 <p>Email</p>
-                <input type="email" id="email" />
+                <input className={`${classes.for}`} type="email" id="email" />
             </label>
-            <label>
+            <br></br>
+            <label className={`${classes.mask}`}>
                 <p>Role</p>
-                <input type="text" id="role" />
+                <input className={`${classes.for}`} type="text" id="role" />
             </label>
-            <div>
-                <button type="submit">Submit</button>
+            <br></br>
+            <div className={`${classes.mask}`}>
+                <button className={`btn ${classes.button3}`} type="submit">Submit</button>
             </div>
         </form>
     );

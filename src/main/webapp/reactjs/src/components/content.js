@@ -1,19 +1,15 @@
 import React, {Component, Fragment, useEffect, useLayoutEffect, useState} from "react";
 import useToken from "./useToken";
-import Login from "./Login";
-import App from "../App";
-
+import "./all.module.css";
+import classes from "./all.module.css";
 
 function Content() {
     const [books, setBooks] = useState(true);
-
     const {token, setToken} = useToken();
 
     useLayoutEffect(() => {
         getBooks();
     });
-
-    let taked = true;
 
     function getBooks() {
         fetch('http://localhost:8083/api/books/', {
@@ -91,14 +87,12 @@ function Content() {
             });
     }
 
-
-
     function updateAmount(id, bookName, amount) {
         // alert(f);
         // alert(id);
         // alert(bookName);
         amount = Number(amount) - 1;
-        fetch('http://localhost:8083/api/books/', {
+        fetch('http://localhost:8083/api/books/amount', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -123,7 +117,7 @@ function Content() {
         // alert(id);
         // alert(bookName);
         amount = Number(amount) + 1;
-        fetch('http://localhost:8083/api/books/', {
+        fetch('http://localhost:8083/api/books/amount', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -155,11 +149,11 @@ function Content() {
         return (
 
             <div>
-                <table>
+                <table className="table col-md-5 text-center">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Text</th>
+                        <th>Book name</th>
                         <th>Amount</th>
                     </tr>
                     </thead>
@@ -169,19 +163,21 @@ function Content() {
                             <td>{book.id}</td>
                             <td>{book.bookName}</td>
                             <td>{book.amount}</td>
-                            <td><button onClick={updateAmount.bind(0, book.id, book.bookName, book.amount)}>Take book</button></td>
-                            <td><button onClick={updateAmound.bind(0, book.id, book.bookName, book.amount)}>Return book</button></td>
+                            <td><button className={`btn ${classes.button1}`} onClick={updateAmount.bind(0, book.id, book.bookName, book.amount)}>Take book</button></td>
+                            <td><button className={`btn ${classes.button2}`} onClick={updateAmound.bind(0, book.id, book.bookName, book.amount)}>Return book</button></td>
                         </tr>)}
                     </tbody>
                 </table>
 
-                <br/>
-                <button onClick={createBook}>Add book</button>
-                <br/>
-                <button onClick={deleteBook}>Delete book</button>
-                <br/>
-                <button onClick={updateBook}>Update book</button>
+                <div className={`text-center ${classes.mask}`}>
+                    <button className={`btn btn-primary ${classes.mask}`} onClick={createBook}>Add book</button>
+
+                    <button className={`btn btn-primary ${classes.mask}`} onClick={deleteBook}>Delete book</button>
+
+                    <button className={`btn btn-primary ${classes.mask}`} onClick={updateBook}>Update book</button>
+                </div>
             </div>
+
         );
 
 }
