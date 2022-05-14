@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://ec2-52-4-104-184.compute-1.amazonaws.com:5432/d9v71kjn4dpt4r?password=3390c12074142dfc9cb4717cab2af9ba884f366fa0247066407f089de4da638d&sslmode=require&user=idhzaiuokyutza"
+    username: "idhzaiuokyutza"
+    password: "3390c12074142dfc9cb4717cab2af9ba884f366fa0247066407f089de4da638d"
+#    url: jdbc:postgresql://localhost:5432/auth
+#    username: postgres
+#    password: postgres
