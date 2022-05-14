@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://client-of-murmuring-tor-23246.herokuapp.com")
 @RequestMapping(value = "api/books")
 public class BookController {
 
