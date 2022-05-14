@@ -12,7 +12,7 @@ function Content() {
     });
 
     function getBooks() {
-        fetch('http://localhost:8083/api/books/', {
+        fetch('https://murmuring-tor-23246.herokuapp.com/api/books/', {
             headers: {
                 'Authorization': token
             }
@@ -28,7 +28,7 @@ function Content() {
     function createBook() {
         let bookName = prompt('Enter text');
         let amount = prompt('Enter amount');//
-        fetch('http://localhost:8083/api/books/', {
+        fetch('https://murmuring-tor-23246.herokuapp.com/api/books/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function Content() {
 
     function deleteBook() {
         let id = prompt('Enter book ID');
-        fetch(`http://localhost:8083/api/books/${id}`, {
+        fetch(`https://murmuring-tor-23246.herokuapp.com/api/books/${id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': token
@@ -66,7 +66,7 @@ function Content() {
         let id = prompt('Enter book ID');
         let bookName = prompt('Enter new text');
         let amount = prompt('Enter new amount');//
-        fetch('http://localhost:8083/api/books/', {
+        fetch('https://murmuring-tor-23246.herokuapp.com/api/books/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ function Content() {
         // alert(id);
         // alert(bookName);
         amount = Number(amount) - 1;
-        fetch('http://localhost:8083/api/books/amount', {
+        fetch('https://murmuring-tor-23246.herokuapp.com/api/books/amount', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ function Content() {
         // alert(id);
         // alert(bookName);
         amount = Number(amount) + 1;
-        fetch('http://localhost:8083/api/books/amount', {
+        fetch('https://murmuring-tor-23246.herokuapp.com/api/books/amount', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

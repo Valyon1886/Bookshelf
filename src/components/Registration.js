@@ -51,7 +51,7 @@ export default function Registration({setToken}) {
 function createUser(event) {
     return axios({
         method: 'post',
-        url: 'http://localhost:8083/api/auth/signup',
+        url: 'https://murmuring-tor-23246.herokuapp.com/api/auth/signup',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
